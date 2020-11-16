@@ -1,11 +1,23 @@
 import React from 'react';
+import styles from './video_item.module.css';
 
-const VideoItem = (props) => {
+// props안에 있는 video 안에 있는 snippet에 접근하기
+// deconstructing
+const VideoItem = ({ video: { snippet } }) => {
 	return (
-		<>
-			<h1>{props.video.snippet.title}</h1>
-			<img src={props.video.snippet.thumbnails.default.url}></img>
-		</>
+		<li className={styles.container}>
+			<div className={styles.video}>
+				<img
+					src={snippet.thumbnails.medium.url}
+					alt='video thumbnail'
+					className={styles.thumbnails}
+				></img>
+				<div className={styles.metadata}>
+					<p className={styles.title}>{snippet.title}</p>
+					<p className={styles.channel}>{snippet.channelTitle}</p>
+				</div>
+			</div>
+		</li>
 	);
 };
 
