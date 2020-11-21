@@ -3,9 +3,13 @@ import styles from './video_item.module.css';
 
 // props안에 있는 video 안에 있는 snippet에 접근하기
 // deconstructing
-const VideoItem = ({ video: { snippet } }) => {
+const VideoItem = ({ video, video: { snippet }, onVideoClick, display }) => {
+	const displayType = display === 'list' ? styles.list : styles.grid;
 	return (
-		<li className={styles.container}>
+		<li
+			className={`${styles.container} ${displayType}`}
+			onClick={() => onVideoClick(video)}
+		>
 			<div className={styles.video}>
 				<img
 					src={snippet.thumbnails.medium.url}
